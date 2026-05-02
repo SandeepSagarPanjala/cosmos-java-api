@@ -5,10 +5,11 @@ import com.cosmos.api.dto.response.UserResponse;
 import com.cosmos.api.service.IUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,9 @@ import java.util.UUID;
  *   <li><b>No verbs in URLs</b> — we use HTTP methods ({@code GET}, {@code POST}, …) for the action; the path names the thing.</li>
  *   <li><b>/api</b> — separates this JSON API from other web routes; version segment ({@code /v1}) can be added later (JD 1.8).</li>
  * </ul>
+ * <p>
+ * JD 1.3 — Status codes &amp; headers: {@code 201} + {@code Location} on create, {@code 204} on delete, {@code 404} for missing user
+ * (see {@code learning/point-1-api-design/03-status-codes-and-headers.md}).
  */
 @RestController
 @RequestMapping("/api/users")
@@ -35,10 +39,17 @@ public class UserController {
      * <p>
      * {@code POST} on the collection URI is the usual pattern for “create a new member” (details: JD 1.2).
      * The body carries the representation to store ({@link UserRegistrationRequest}), not the URL.
+     * <p>
+     * Returns {@code 201 Created} and a {@code Location} header pointing at the new item URI (RFC 9110 / common REST practice).
      */
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRegistrationRequest request) {
-        return new ResponseEntity<>(userService.createUser(request), HttpStatus.CREATED);
+        UserResponse created = userService.createUser(request);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(created.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
     /**
@@ -62,6 +73,7 @@ public class UserController {
 
     /**
      * Deletes the item {@code /api/users/{id}}. Same path as GET by id — different HTTP method (JD 1.2).
+     * Returns {@code 204 No Content} — success with no body (typical for DELETE).
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {

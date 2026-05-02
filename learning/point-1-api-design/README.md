@@ -6,7 +6,7 @@ Sub-points below match the study plan (1.1–1.12). Each has a note under this f
 |-----|--------|------|--------|
 | **1.1** | REST: resources & URLs | [01-resources-and-urls.md](./01-resources-and-urls.md) | Done |
 | **1.2** | HTTP methods & safety / idempotency | [02-http-methods-and-idempotency.md](./02-http-methods-and-idempotency.md) | Done |
-| **1.3** | Status codes & headers | *TBD* | Planned |
+| **1.3** | Status codes & headers | [03-status-codes-and-headers.md](./03-status-codes-and-headers.md) | Done |
 | **1.4** | DTOs & validation | *TBD* | Planned |
 | **1.5** | Errors as data (Problem Details) | *TBD* | Planned |
 | **1.6** | List / search / pagination | *TBD* | Planned |

@@ -3,6 +3,7 @@ package com.cosmos.api.service.impl;
 import com.cosmos.api.dto.request.UserRegistrationRequest;
 import com.cosmos.api.dto.response.UserResponse;
 import com.cosmos.api.entity.User;
+import com.cosmos.api.exception.UserNotFoundException;
 import com.cosmos.api.repository.UserRepository;
 import com.cosmos.api.service.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements IUserService {
     @Transactional(readOnly = true)
     public UserResponse getUserById(UUID id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
         return mapToDTO(user);
     }
 
@@ -53,7 +54,7 @@ public class UserServiceImpl implements IUserService {
     @Transactional
     public void deleteUser(UUID id) {
         if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new UserNotFoundException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
     }

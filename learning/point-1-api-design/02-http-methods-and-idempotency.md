@@ -95,4 +95,4 @@ Client sends unique key for operation intent:
 
 ## Next sub-point
 
-**1.3 — Status codes & headers** (201 + Location, 204, 409, 412, ETag basics).
+**1.3 — Status codes & headers** — see [03-status-codes-and-headers.md](./03-status-codes-and-headers.md).
