@@ -3,6 +3,7 @@
 | Area | Path |
 |------|------|
 | User REST endpoints | `src/main/java/com/cosmos/api/controller/UserController.java` |
+| HTTP method semantics demo | `src/main/java/com/cosmos/api/sample/HttpMethodSemanticsDemoController.java` |
 | Registration request DTO | `src/main/java/com/cosmos/api/dto/request/UserRegistrationRequest.java` |
 | User response DTO | `src/main/java/com/cosmos/api/dto/response/UserResponse.java` |
 | Service contract | `src/main/java/com/cosmos/api/service/IUserService.java` |

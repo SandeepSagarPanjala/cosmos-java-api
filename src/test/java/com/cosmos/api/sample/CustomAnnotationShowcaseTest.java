@@ -15,13 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Demonstrates how the <b>JVM</b> exposes {@link RetentionPolicy#RUNTIME} annotations via reflection.
- * Open this test and run it — read the assertions as documentation.
+ * Demonstrates how RUNTIME annotations are exposed via reflection.
  */
 class CustomAnnotationShowcaseTest {
 
     @Test
-    void classLevelRuntimeAnnotations() throws Exception {
+    void classLevelRuntimeAnnotations() {
         Class<?> clazz = CustomAnnotationShowcase.class;
 
         TeamOwned owned = clazz.getAnnotation(TeamOwned.class);
@@ -33,7 +32,6 @@ class CustomAnnotationShowcaseTest {
         assertNotNull(classified);
         assertEquals(DataClassification.INTERNAL, classified.value());
 
-        // SOURCE annotations like @GeneratorHint are NOT on the class at runtime:
         assertTrue(
                 java.util.Arrays.stream(clazz.getAnnotations())
                         .map(Annotation::annotationType)
@@ -49,7 +47,7 @@ class CustomAnnotationShowcaseTest {
         TeamOwned team = m.getAnnotation(TeamOwned.class);
         assertNotNull(team);
         assertEquals("Payments", team.team());
-        assertEquals("", team.contact()); // default was used
+        assertEquals("", team.contact());
 
         Classified c = m.getAnnotation(Classified.class);
         assertEquals(DataClassification.RESTRICTED, c.value());
@@ -62,6 +60,6 @@ class CustomAnnotationShowcaseTest {
                 .map(a -> a.annotationType().getSimpleName())
                 .sorted()
                 .toArray(String[]::new);
-        assertArrayEquals(new String[] { "Classified", "IdempotentEndpoint", "TeamOwned" }, names);
+        assertArrayEquals(new String[]{"Classified", "IdempotentEndpoint", "TeamOwned"}, names);
     }
 }
