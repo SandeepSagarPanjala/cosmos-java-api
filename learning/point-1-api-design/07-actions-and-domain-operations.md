@@ -86,4 +86,4 @@ Content-Type: application/json
 
 ## Next sub-point
 
-**1.8 — Versioning & compatibility** — see [08-versioning-and-compatibility.md](./08-versioning-and-compatibility.md).
+**1.8 — Versioning & compatibility** — [08-versioning-and-compatibility.md](./08-versioning-and-compatibility.md). Then **1.9 — gRPC** — [09-grpc-when-and-how.md](./09-grpc-when-and-how.md).

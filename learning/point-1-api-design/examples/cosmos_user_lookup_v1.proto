@@ -1,0 +1,24 @@
+// Study-only contract (JD 1.9). Not wired into the Maven build — Cosmos HTTP API remains the runnable app.
+// A real service would compile this with protoc / protobuf-maven-plugin and implement the generated server API.
+
+syntax = "proto3";
+
+package cosmos.api.v1;
+
+option java_multiple_files = true;
+option java_package = "com.cosmos.api.grpc.v1";
+
+// Example: internal "get user" RPC — mirrors the idea of GET /api/v1/users/{id} but over gRPC.
+service UserLookup {
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+}
+
+message GetUserRequest {
+  string user_id = 1; // UUID as string
+}
+
+message UserResponse {
+  string user_id = 1;
+  string email = 2;
+  string display_name = 3;
+}

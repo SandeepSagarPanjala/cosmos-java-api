@@ -73,4 +73,4 @@ Cosmos uses **URI path** + constants in **`ApiPaths`** so the prefix is not copy
 
 ## Next sub-point
 
-**1.9 — gRPC** — `.proto`, when to use vs REST.
+**1.9 — gRPC** — see [09-grpc-when-and-how.md](./09-grpc-when-and-how.md).

@@ -25,3 +25,4 @@
 | User not found (404) | `src/main/java/com/cosmos/api/exception/UserNotFoundException.java` |
 | App entry | `src/main/java/com/cosmos/api/CosmosJavaApiApplication.java` |
 | Config | `src/main/resources/application.properties` |
+| Study-only gRPC `.proto` (JD 1.9, not in Maven build) | `learning/point-1-api-design/examples/cosmos_user_lookup_v1.proto` |
