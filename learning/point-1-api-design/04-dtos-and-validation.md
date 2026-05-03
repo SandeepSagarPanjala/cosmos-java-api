@@ -77,4 +77,4 @@ Annotations like `@NotBlank`, `@Email`, `@Size` on fields. Controller uses **`@V
 
 ## Next sub-point
 
-**1.5 — Errors as data (Problem Details)** — consistent error JSON (`type`, `title`, `status`, …).
+**1.5 — Errors as data (Problem Details)** — see [05-errors-as-data-problem-details.md](./05-errors-as-data-problem-details.md).

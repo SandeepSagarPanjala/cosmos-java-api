@@ -12,6 +12,7 @@
 | JPA entity | `src/main/java/com/cosmos/api/entity/User.java` |
 | Repository | `src/main/java/com/cosmos/api/repository/UserRepository.java` |
 | Global errors | `src/main/java/com/cosmos/api/exception/GlobalExceptionHandler.java` |
+| Problem `type` URIs (RFC 7807) | `src/main/java/com/cosmos/api/exception/ProblemTypeUri.java` |
 | User not found (404) | `src/main/java/com/cosmos/api/exception/UserNotFoundException.java` |
 | App entry | `src/main/java/com/cosmos/api/CosmosJavaApiApplication.java` |
 | Config | `src/main/resources/application.properties` |
