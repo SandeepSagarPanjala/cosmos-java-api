@@ -112,4 +112,4 @@ Interview: you do **not** need to recite Maven coordinates — you need **“we 
 
 ## Next sub-point
 
-**1.10 — Event-driven APIs** — topics, consumers, outbox, idempotency on the read side.
+**1.10 — Event-driven APIs** — see [10-event-driven-apis.md](./10-event-driven-apis.md).

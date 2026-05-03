@@ -13,7 +13,7 @@ Sub-points below match the study plan (1.1–1.12). Each has a note under this f
 | **1.7** | Actions & domain operations | [07-actions-and-domain-operations.md](./07-actions-and-domain-operations.md) | Done |
 | **1.8** | Versioning & compatibility (design) | [08-versioning-and-compatibility.md](./08-versioning-and-compatibility.md) | Done |
 | **1.9** | gRPC | [09-grpc-when-and-how.md](./09-grpc-when-and-how.md) | Done |
-| **1.10** | Event-driven APIs | *TBD* | Planned |
+| **1.10** | Event-driven APIs | [10-event-driven-apis.md](./10-event-driven-apis.md) | Done |
 | **1.11** | OpenAPI / contract-first | *TBD* | Planned |
 | **1.12** | AsyncAPI | *TBD* | Planned |
 
