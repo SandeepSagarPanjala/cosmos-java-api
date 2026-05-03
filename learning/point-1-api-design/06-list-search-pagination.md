@@ -84,4 +84,4 @@ GET /api/users?email=corp
 
 ## Next sub-point
 
-**1.7 — Actions & domain operations** — `POST /transfers` style commands vs pure CRUD.
+**1.7 — Actions & domain operations** — see [07-actions-and-domain-operations.md](./07-actions-and-domain-operations.md).

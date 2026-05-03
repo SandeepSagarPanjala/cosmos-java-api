@@ -10,7 +10,7 @@ Sub-points below match the study plan (1.1–1.12). Each has a note under this f
 | **1.4** | DTOs & validation | [04-dtos-and-validation.md](./04-dtos-and-validation.md) | Done |
 | **1.5** | Errors as data (Problem Details) | [05-errors-as-data-problem-details.md](./05-errors-as-data-problem-details.md) | Done |
 | **1.6** | List / search / pagination | [06-list-search-pagination.md](./06-list-search-pagination.md) | Done |
-| **1.7** | Actions & domain operations | *TBD* | Planned |
+| **1.7** | Actions & domain operations | [07-actions-and-domain-operations.md](./07-actions-and-domain-operations.md) | Done |
 | **1.8** | Versioning & compatibility (design) | *TBD* | Planned |
 | **1.9** | gRPC | *TBD* | Planned |
 | **1.10** | Event-driven APIs | *TBD* | Planned |
