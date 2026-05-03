@@ -9,8 +9,8 @@ Clients (and OpenAPI generators) do better when **errors look like errors**, not
 **Do today:**
 
 1. Read **“What is Problem Detail?”** below — one pass.
-2. Trigger a **400**: `POST /api/users` with invalid email → read JSON keys **`type`**, **`title`**, **`status`**, **`detail`**, **`instance`**, **`fieldErrors`**.
-3. Trigger a **404**: `GET /api/users/{random-uuid}` → same shape, no `fieldErrors`.
+2. Trigger a **400**: `POST /api/v1/users` with invalid email → read JSON keys **`type`**, **`title`**, **`status`**, **`detail`**, **`instance`**, **`fieldErrors`**.
+3. Trigger a **404**: `GET /api/v1/users/{random-uuid}` → same shape, no `fieldErrors`.
 4. Say out loud: *“We use stable `type` URIs so machines can branch; humans read `title` and `detail`.”*
 
 ---
@@ -64,7 +64,7 @@ You may add **extension** members (e.g. **`fieldErrors`**) for validation.
   "title": "User not found",
   "status": 404,
   "detail": "User not found with id: …",
-  "instance": "/api/users/…"
+  "instance": "/api/v1/users/…"
 }
 ```
 
@@ -76,7 +76,7 @@ You may add **extension** members (e.g. **`fieldErrors`**) for validation.
   "title": "Validation failed",
   "status": 400,
   "detail": "One or more fields failed validation.",
-  "instance": "/api/users",
+  "instance": "/api/v1/users",
   "fieldErrors": {
     "email": "Invalid email format"
   }

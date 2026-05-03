@@ -9,10 +9,10 @@ Pure CRUD (`POST /users`, `GET /users/{id}`) is not enough for banking. **Money 
 **Do today:**
 
 1. Read **“Command vs CRUD”** once.
-2. Call **`POST /api/transfers`** twice with the **same** `Idempotency-Key` and **same** JSON → second response should match first (no duplicate row intent).
+2. Call **`POST /api/v1/transfers`** twice with the **same** `Idempotency-Key` and **same** JSON → second response should match first (no duplicate row intent).
 3. Same key, **different** body (e.g. change `amount`) → **409 Conflict** Problem Detail.
 4. Same `fromAccountId` and `toAccountId` → **400** invalid transfer.
-5. **`GET /api/transfers/{id}`** using the `Location` from the `201` response.
+5. **`GET /api/v1/transfers/{id}`** using the `Location` from the `201` response.
 
 ---
 
@@ -50,7 +50,7 @@ Cosmos compares **from**, **to**, **amount**, **currency** (currency normalized 
 
 | Topic | Path |
 |--------|------|
-| Command endpoint | [`TransferController`](../../src/main/java/com/cosmos/api/controller/TransferController.java) — `POST /api/transfers`, `GET /api/transfers/{id}` |
+| Command endpoint | [`TransferController`](../../src/main/java/com/cosmos/api/controller/TransferController.java) — `POST /api/v1/transfers`, `GET /api/v1/transfers/{id}` |
 | Command + idempotency logic | [`TransferServiceImpl`](../../src/main/java/com/cosmos/api/service/impl/TransferServiceImpl.java) |
 | Request / response DTOs | [`TransferCommandRequest`](../../src/main/java/com/cosmos/api/dto/request/TransferCommandRequest.java), [`TransferResponse`](../../src/main/java/com/cosmos/api/dto/response/TransferResponse.java) |
 | Persistence | [`Transfer`](../../src/main/java/com/cosmos/api/entity/Transfer.java), [`TransferRepository`](../../src/main/java/com/cosmos/api/repository/TransferRepository.java) |
@@ -59,10 +59,10 @@ Cosmos compares **from**, **to**, **amount**, **currency** (currency normalized 
 
 ---
 
-## Example `POST /api/transfers`
+## Example `POST /api/v1/transfers`
 
 ```http
-POST /api/transfers
+POST /api/v1/transfers
 Idempotency-Key: 7f2c3b1a-9e8d-4c7b-9a2f-1e3d5b7c9a0f
 Content-Type: application/json
 
@@ -86,4 +86,4 @@ Content-Type: application/json
 
 ## Next sub-point
 
-**1.8 — Versioning & compatibility** — URI vs header vs media type; additive vs breaking changes.
+**1.8 — Versioning & compatibility** — see [08-versioning-and-compatibility.md](./08-versioning-and-compatibility.md).

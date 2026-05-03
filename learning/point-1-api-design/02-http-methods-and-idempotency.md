@@ -56,9 +56,9 @@ That method is not just syntax. It carries behavior contracts:
 
 ### 2) Cosmos mapping today
 
-- `GET /api/users` and `GET /api/users/{id}` -> safe/idempotent reads.
-- `POST /api/users` -> create, usually non-idempotent.
-- `DELETE /api/users/{id}` -> idempotent delete semantics.
+- `GET /api/v1/users` and `GET /api/v1/users/{id}` -> safe/idempotent reads.
+- `POST /api/v1/users` -> create, usually non-idempotent.
+- `DELETE /api/v1/users/{id}` -> idempotent delete semantics.
 
 ### 3) Retry behavior (real-world)
 

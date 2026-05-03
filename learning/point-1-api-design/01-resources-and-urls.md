@@ -9,7 +9,7 @@ Treat this doc as something I’d tell you sitting next to you before your inter
 **Do this today (honest checklist):**
 
 1. Read **“Core ideas”** once slowly — not to memorise wording, but so the picture sticks.
-2. Open **`UserController`** in Cosmos and narrate **out loud** (seriously): *“This is the collection `/api/users`; this `{id}` is one user; POST creates in the collection; I’m not putting verbs in the path.”* If you stumble, skim the headings again — that’s the signal you need another pass.
+2. Open **`UserController`** in Cosmos and narrate **out loud** (seriously): *“This is the collection `/api/v1/users`; this `{id}` is one user; POST creates in the collection; I’m not putting verbs in the path.”* If you stumble, skim the headings again — that’s the signal you need another pass.
 3. Spend **five minutes** on **“Interview: questions they actually ask”** — don’t cram; practise **one short answer per question** in your own words.
 4. If you have ten extra minutes: answer the **self-check** at the bottom **without scrolling up**. Miss one? Perfect — that’s what to revise.
 
@@ -36,11 +36,11 @@ Use your own words. Length is a cue: **~20–40 seconds** for “explain”, **o
 | *Why not `/getUser` or verbs in the path?* | The **verb is already HTTP** (`GET`, `POST`, …). Verbs in the path **duplicate** meaning and confuse **caching**, **monitoring**, and **consistent design**. |
 | *Path versus query — when?* | **Primary lookup** of one resource → **path** (`/users/{id}`). **Filters, search, paging** → **query** (`?role=admin&cursor=abc`). Cosmos already uses **path for id** on GET by id. |
 | *How deep would you nest URLs?* | **Nest when ownership is clear** (`/customers/{id}/accounts`). **Don’t chase infinite depth** — if it gets clumsy, **flatten** or introduce a clearer aggregate (we’ll deepen in 1.7). |
-| *How would you model a money transfer in URLs?* | Often **`POST /transfers`** with a body — treat **transfer as a resource/command**, not **`GET /moveMoney`**. Mention **idempotency** briefly (they’ll love it; detail in 1.2). |
+| *How would you model a money transfer in URLs?* | Often **`POST /api/v1/transfers`** (or similar) with a body — treat **transfer as a resource/command**, not **`GET /moveMoney`**. Mention **idempotency** briefly (they’ll love it; detail in 1.2). |
 
 **If they point at your resume or “this codebase”:**
 
-- Cosmos: **`/api/users`** = user collection; **`/api/users/{id}`** = one user — **that's the story**. If they ask why no `/v1` yet: **“We haven’t broken the contract yet; I'd introduce `/api/v1/...` when we need a clear compatibility boundary.”** (We’ll deepen in 1.8.)
+- Cosmos: **`/api/v1/users`** = user collection; **`/api/v1/users/{id}`** = one user — **that's the story**. The **`v1`** segment is the compatibility boundary (see [1.8](./08-versioning-and-compatibility.md)); **`ApiPaths`** keeps the prefix consistent.
 
 ---
 
@@ -61,7 +61,7 @@ Breathe. Then give one Cosmos or banking example.
 - **Collection resource:** many items of the same kind → path is usually **plural**: `/users`, `/accounts`.
 - **Item resource:** one identified thing → path includes the **identifier**: `/users/{id}`.
 
-**Cosmos today:** The collection is `GET/POST /api/users`. One user is `GET/DELETE /api/users/{id}`. That matches the usual pattern: plural segment for the collection, `{id}` for the item.
+**Cosmos today:** The collection is `GET/POST /api/v1/users`. One user is `GET/DELETE /api/v1/users/{id}`. That matches the usual pattern: plural segment for the collection, `{id}` for the item.
 
 ### 2. Nouns in paths, not verbs
 
@@ -108,7 +108,7 @@ Common conventions:
 - **`/api`** — separates machine-facing JSON APIs from human pages or legacy paths.
 - **`/api/v1/...`** — embeds **API version** in the path (full tradeoffs in 1.8).
 
-**Cosmos today:** Base path is `/api/users` — there is **no `v1` segment yet**. For interviews, be ready to say: *“We can add `/api/v1/users` when we need a breaking change boundary.”*
+**Cosmos today:** Base path is **`/api/v1/users`** via `ApiPaths.V1_USERS` — when you need a breaking change, you introduce **`v2`** (or negotiate another style) and keep **`v1`** stable for a deprecation window.
 
 ### 6. What does *not* belong in the URL
 
@@ -132,7 +132,8 @@ You will deepen **actions vs pure CRUD** in **1.7**.
 
 | Concept | Where |
 |---------|--------|
-| Collection + item paths | [`UserController.java`](../../src/main/java/com/cosmos/api/controller/UserController.java) — `@RequestMapping("/api/users")`, `GET ""`, `GET/DELETE "/{id}"` |
+| Collection + item paths | [`UserController.java`](../../src/main/java/com/cosmos/api/controller/UserController.java) — `@RequestMapping(ApiPaths.V1_USERS)`, `GET ""`, `GET/DELETE "/{id}"` |
+| Version constants | [`ApiPaths.java`](../../src/main/java/com/cosmos/api/web/ApiPaths.java) |
 | Path variable as resource id | Same file — `@PathVariable UUID id` |
 | Request body for create | Same file — `@RequestBody UserRegistrationRequest` on `POST` |
 | DTOs (representation) | [`UserRegistrationRequest.java`](../../src/main/java/com/cosmos/api/dto/request/UserRegistrationRequest.java), [`UserResponse.java`](../../src/main/java/com/cosmos/api/dto/response/UserResponse.java) |

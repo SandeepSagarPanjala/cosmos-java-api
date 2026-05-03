@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * JD 1.4 — Inbound DTO for {@code POST /api/users}. Describes the JSON contract for <b>registration</b> only.
+ * JD 1.4 — Inbound DTO for {@code POST /api/v1/users}. Describes the JSON contract for <b>registration</b> only.
  * <p>
  * Not the same as {@link com.cosmos.api.entity.User}: never expose persistence fields (e.g. password hash) on the wire;
  * {@code password} here is plain text from the client and mapped to {@code passwordHash} in the service.

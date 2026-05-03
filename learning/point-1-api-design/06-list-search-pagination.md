@@ -8,7 +8,7 @@ Collection **`GET`** endpoints are where teams accidentally ship **unbounded** q
 
 **Do today:**
 
-1. Call `GET /api/users` with no params — note **`content`**, **`page`**, **`totalElements`**, **`totalPages`**.
+1. Call `GET /api/v1/users` with no params — note **`content`**, **`page`**, **`totalElements`**, **`totalPages`**.
 2. Try `?page=0&size=5&sortBy=email&sortDir=asc` and `?email=gmail` (substring search).
 3. Send `?size=500` — watch **`size`** cap at **100** in the response (server-side guard).
 4. Send `?page=-1` — should get **400** Problem Detail (`violations`) from **`@Min(0)`** on `page`.
@@ -28,7 +28,7 @@ Cosmos uses **page + size** via Spring Data **`Pageable`**.
 
 ### 2) Search / filter on collections
 
-Use **query params**: `GET /api/users?email=gmail` — not a new path like `/searchUsers`.
+Use **query params**: `GET /api/v1/users?email=gmail` — not a new path like `/searchUsers`.
 
 Cosmos implements **substring** match on **email** (case-insensitive). In banks you’d document PII rules (logging, minimum query length).
 
@@ -67,16 +67,16 @@ Returning a bare `[]` hides totals. Cosmos returns **`PagedUsersResponse`**: `co
 ## Example requests
 
 ```http
-GET /api/users
-GET /api/users?page=0&size=10&sortBy=createdAt&sortDir=desc
-GET /api/users?email=corp
+GET /api/v1/users
+GET /api/v1/users?page=0&size=10&sortBy=createdAt&sortDir=desc
+GET /api/v1/users?email=corp
 ```
 
 ---
 
 ## Quick self-check
 
-1. Why not `GET /api/users/getPage/1`?
+1. Why not `GET /api/v1/users/getPage/1`?
 2. Why whitelist `sortBy`?
 3. When would you switch from offset to **cursor** pagination?
 

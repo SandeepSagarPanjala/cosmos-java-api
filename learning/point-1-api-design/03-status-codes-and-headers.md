@@ -29,7 +29,7 @@ Headers often matter as much as the body: **`Location`** after create, **`Conten
 
 | They might say | Your direction |
 |----------------|----------------|
-| *What do you return after POST create?* | **`201 Created`**, body with representation, and usually **`Location: /api/users/{id}`** so the client can fetch without guessing the URL. |
+| *What do you return after POST create?* | **`201 Created`**, body with representation, and usually **`Location: /api/v1/users/{id}`** so the client can fetch without guessing the URL. |
 | *What about DELETE success?* | Often **`204 No Content`** — success, no body. Second delete may be **204** or **404**; both can be argued as idempotent (resource absent). |
 | *404 vs 400?* | **400** = bad syntax or validation (wrong shape, missing required field). **404** = we understood the request but **that resource id does not exist** (for GET/DELETE/PATCH/PUT by id). |
 | *401 vs 403?* | **401** = not authenticated. **403** = authenticated but **not allowed** for this action. |

@@ -2,6 +2,7 @@
 
 | Area | Path |
 |------|------|
+| Version path constants (JD 1.8) | `src/main/java/com/cosmos/api/web/ApiPaths.java` |
 | User REST endpoints | `src/main/java/com/cosmos/api/controller/UserController.java` |
 | Transfer command API | `src/main/java/com/cosmos/api/controller/TransferController.java` |
 | HTTP method semantics demo | `src/main/java/com/cosmos/api/sample/HttpMethodSemanticsDemoController.java` |

@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
- * JD 1.7 — Command body for {@code POST /api/transfers} (money movement intent).
+ * JD 1.7 — Command body for {@code POST /api/v1/transfers} (money movement intent).
  */
 @Data
 @Builder

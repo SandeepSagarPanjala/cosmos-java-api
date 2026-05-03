@@ -10,8 +10,8 @@
 
 1. Read **“Why not expose `User` entity?”** once — interviewers love this.
 2. Open `UserRegistrationRequest`, `UserPatchRequest`, `UserResponse`, `User` — say which is **in**, **out**, **DB**.
-3. Break `POST /api/users` on purpose (bad email, short password) and watch **400** + field errors from `GlobalExceptionHandler`.
-4. Call **`PATCH /api/users/{id}`** with `{"displayName":"..."}` and with a **too-long** string to see validation fire.
+3. Break `POST /api/v1/users` on purpose (bad email, short password) and watch **400** + field errors from `GlobalExceptionHandler`.
+4. Call **`PATCH /api/v1/users/{id}`** with `{"displayName":"..."}` and with a **too-long** string to see validation fire.
 
 ---
 
