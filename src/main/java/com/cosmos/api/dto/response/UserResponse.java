@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+/**
+ * JD 1.4 — Outbound DTO: safe projection for clients (no password / hash field).
+ */
 @Data
 @Builder
 @NoArgsConstructor

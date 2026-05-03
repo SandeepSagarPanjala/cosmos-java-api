@@ -11,6 +11,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+/**
+ * JD 1.4 — JPA persistence model, not the public API contract. Controllers use DTOs ({@code *Request} / {@code *Response})
+ * so schema, validation, and versioning can evolve separately from tables.
+ */
 @Entity
 @Table(name = "users")
 @Data

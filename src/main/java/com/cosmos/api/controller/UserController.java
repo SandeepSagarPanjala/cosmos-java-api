@@ -1,5 +1,6 @@
 package com.cosmos.api.controller;
 
+import com.cosmos.api.dto.request.UserPatchRequest;
 import com.cosmos.api.dto.request.UserRegistrationRequest;
 import com.cosmos.api.dto.response.UserResponse;
 import com.cosmos.api.service.IUserService;
@@ -26,6 +27,8 @@ import java.util.UUID;
  * <p>
  * JD 1.3 — Status codes &amp; headers: {@code 201} + {@code Location} on create, {@code 204} on delete, {@code 404} for missing user
  * (see {@code learning/point-1-api-design/03-status-codes-and-headers.md}).
+ * <p>
+ * JD 1.4 — DTOs &amp; validation: request/response types + {@code @Valid} (see {@code learning/point-1-api-design/04-dtos-and-validation.md}).
  */
 @RestController
 @RequestMapping("/api/users")
@@ -41,6 +44,7 @@ public class UserController {
      * The body carries the representation to store ({@link UserRegistrationRequest}), not the URL.
      * <p>
      * Returns {@code 201 Created} and a {@code Location} header pointing at the new item URI (RFC 9110 / common REST practice).
+     * {@code @Valid} runs Bean Validation on {@link UserRegistrationRequest}; failures become {@code 400} via {@code GlobalExceptionHandler}.
      */
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRegistrationRequest request) {
@@ -59,6 +63,16 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    /**
+     * Partial update — {@code PATCH /api/users/{id}} with a {@link UserPatchRequest} (different shape from full registration).
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserResponse> patchUser(
+            @PathVariable UUID id,
+            @Valid @RequestBody UserPatchRequest request) {
+        return ResponseEntity.ok(userService.patchUser(id, request));
     }
 
     /**

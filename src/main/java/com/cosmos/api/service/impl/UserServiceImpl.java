@@ -1,5 +1,6 @@
 package com.cosmos.api.service.impl;
 
+import com.cosmos.api.dto.request.UserPatchRequest;
 import com.cosmos.api.dto.request.UserRegistrationRequest;
 import com.cosmos.api.dto.response.UserResponse;
 import com.cosmos.api.entity.User;
@@ -40,6 +41,17 @@ public class UserServiceImpl implements IUserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
         return mapToDTO(user);
+    }
+
+    @Override
+    @Transactional
+    public UserResponse patchUser(UUID id, UserPatchRequest request) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        if (request.getDisplayName() != null) {
+            user.setDisplayName(request.getDisplayName());
+        }
+        return mapToDTO(userRepository.save(user));
     }
 
     @Override

@@ -91,4 +91,4 @@ Headers often matter as much as the body: **`Location`** after create, **`Conten
 
 ## Next sub-point
 
-**1.4 — DTOs & validation** (request/response models, `@Valid`, Bean Validation).
+**1.4 — DTOs & validation** — see [04-dtos-and-validation.md](./04-dtos-and-validation.md).
