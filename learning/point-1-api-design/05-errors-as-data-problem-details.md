@@ -95,4 +95,4 @@ You may add **extension** members (e.g. **`fieldErrors`**) for validation.
 
 ## Next sub-point
 
-**1.6 — List / search / pagination** — query params, cursors, limits.
+**1.6 — List / search / pagination** — see [06-list-search-pagination.md](./06-list-search-pagination.md).

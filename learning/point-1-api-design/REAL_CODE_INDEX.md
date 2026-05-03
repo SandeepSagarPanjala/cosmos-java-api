@@ -7,6 +7,7 @@
 | Registration request DTO | `src/main/java/com/cosmos/api/dto/request/UserRegistrationRequest.java` |
 | Patch request DTO | `src/main/java/com/cosmos/api/dto/request/UserPatchRequest.java` |
 | User response DTO | `src/main/java/com/cosmos/api/dto/response/UserResponse.java` |
+| Paged users response | `src/main/java/com/cosmos/api/dto/response/PagedUsersResponse.java` |
 | Service contract | `src/main/java/com/cosmos/api/service/IUserService.java` |
 | Service implementation | `src/main/java/com/cosmos/api/service/impl/UserServiceImpl.java` |
 | JPA entity | `src/main/java/com/cosmos/api/entity/User.java` |

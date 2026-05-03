@@ -2,16 +2,19 @@ package com.cosmos.api.controller;
 
 import com.cosmos.api.dto.request.UserPatchRequest;
 import com.cosmos.api.dto.request.UserRegistrationRequest;
+import com.cosmos.api.dto.response.PagedUsersResponse;
 import com.cosmos.api.dto.response.UserResponse;
 import com.cosmos.api.service.IUserService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -29,7 +32,10 @@ import java.util.UUID;
  * (see {@code learning/point-1-api-design/03-status-codes-and-headers.md}).
  * <p>
  * JD 1.4 — DTOs &amp; validation: request/response types + {@code @Valid} (see {@code learning/point-1-api-design/04-dtos-and-validation.md}).
+ * <p>
+ * JD 1.6 — List/search/pagination on {@code GET /api/users} (see {@code learning/point-1-api-design/06-list-search-pagination.md}).
  */
+@Validated
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -76,13 +82,19 @@ public class UserController {
     }
 
     /**
-     * Lists the collection — {@code GET /api/users} with no extra path after the plural segment.
+     * Paginated list of the collection — {@code GET /api/users?page=&amp;size=&amp;email=&amp;sortBy=&amp;sortDir=}.
      * <p>
-     * Filtering/pagination (e.g. {@code ?page=0&amp;size=20}) belong here as <b>query parameters</b> (JD 1.6), not as {@code /getAllUsers}.
+     * Query params (JD 1.6): optional {@code email} substring search; {@code page} (0-based); {@code size} (capped);
+     * {@code sortBy} whitelist ({@code createdAt}, {@code email}, {@code username}); {@code sortDir} {@code asc} or {@code desc}.
      */
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    public ResponseEntity<PagedUsersResponse> listUsers(
+            @RequestParam(required = false) String email,
+            @RequestParam(defaultValue = "0") @Min(0) int page,
+            @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size,
+            @RequestParam(defaultValue = "createdAt") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDir) {
+        return ResponseEntity.ok(userService.searchUsers(email, page, size, sortBy, sortDir));
     }
 
     /**

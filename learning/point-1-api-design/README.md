@@ -9,7 +9,7 @@ Sub-points below match the study plan (1.1–1.12). Each has a note under this f
 | **1.3** | Status codes & headers | [03-status-codes-and-headers.md](./03-status-codes-and-headers.md) | Done |
 | **1.4** | DTOs & validation | [04-dtos-and-validation.md](./04-dtos-and-validation.md) | Done |
 | **1.5** | Errors as data (Problem Details) | [05-errors-as-data-problem-details.md](./05-errors-as-data-problem-details.md) | Done |
-| **1.6** | List / search / pagination | *TBD* | Planned |
+| **1.6** | List / search / pagination | [06-list-search-pagination.md](./06-list-search-pagination.md) | Done |
 | **1.7** | Actions & domain operations | *TBD* | Planned |
 | **1.8** | Versioning & compatibility (design) | *TBD* | Planned |
 | **1.9** | gRPC | *TBD* | Planned |
